@@ -5,7 +5,7 @@ import { Button } from '@/components/atoms/button'
 import { Input } from '@/components/atoms/input'
 import { Label } from '@/components/atoms/label'
 import { Textarea } from '@/components/atoms/textarea'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/atoms/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 export function ContactForm() {

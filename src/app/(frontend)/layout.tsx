@@ -28,7 +28,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         {/* Usamos flex-grow para que el contenido empuje el futuro footer hacia abajo */}
         <main className="flex-grow">{children}</main>
 
-        <Footer />
+        <Suspense fallback={<div className="h-20 bg-slate-900" />}>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   )

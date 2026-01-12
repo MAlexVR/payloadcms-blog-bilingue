@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/atoms/button'
 import Link from 'next/link'
-import { useLocale } from '@/hooks/useLocale'
 import { useDictionary } from '@/hooks/useDictionary'
 // import { heroDictionary } from './hero.dictionary'
 
