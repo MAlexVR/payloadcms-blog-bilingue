@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { PageLayout } from '@/components/templates/PageLayout'
 import { ContactForm } from '@/components/organisms/ContactForm'
 
@@ -9,7 +10,9 @@ export const metadata = {
 export default async function ContactPage() {
   return (
     <PageLayout>
-      <ContactForm />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ContactForm />
+      </Suspense>
     </PageLayout>
   )
 }

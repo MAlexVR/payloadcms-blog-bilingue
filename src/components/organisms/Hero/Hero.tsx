@@ -23,7 +23,6 @@ export function Hero({
   secondaryButtonText,
   secondaryButtonHref = '#',
 }: HeroProps) {
-  const { currentLocale } = useLocale()
   const { dictionary } = useDictionary()
   const t = dictionary.hero
 
