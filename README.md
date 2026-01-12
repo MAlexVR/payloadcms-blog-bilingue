@@ -26,12 +26,12 @@ El proyecto sigue la metodología de **Diseño Atómico** para garantizar escala
 
 ### Instalación y Configuración
 
-El proyecto utiliza **pnpm** como gestor de paquetes. Asegúrate de tenerlo instalado.
+El proyecto utiliza **npm** como gestor de paquetes.
 
 1.  **Instalar dependencias**:
 
     ```bash
-    pnpm install
+    npm install
     ```
 
 2.  **Configurar Variables de Entorno**:
@@ -44,13 +44,13 @@ El proyecto utiliza **pnpm** como gestor de paquetes. Asegúrate de tenerlo inst
 3.  **Ejecutar en Desarrollo**:
 
     ```bash
-    pnpm dev
+    npm run dev
     ```
 
 4.  **Generar Tipos de Payload**:
     Si modificas las colecciones, regenera los tipos:
     ```bash
-    pnpm generate:types
+    npm run generate:types
     ```
 5.  **Acceder al Panel Administrativo**:
     Ve a `http://localhost:3000/admin` para gestionar el contenido.
