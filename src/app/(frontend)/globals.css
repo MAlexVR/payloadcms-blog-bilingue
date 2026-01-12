@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+/* 🚩 Estilos de las banderas para el selector de idioma */
+@import 'flag-icons/css/flag-icons.min.css';
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    /* 🟢 Paleta Institucional */
+    --primary: #39a900; /* Verde Brillante Institucional */
+    --primary-foreground: #ffffff;
+
+    --secondary: #007832; /* Verde Oscuro Institucional */
+    --secondary-foreground: #ffffff;
+
+    --accent: #00304d; /* Azul Marino Institucional */
+    --accent-foreground: #ffffff;
+
+    --background: #ffffff;
+    --foreground: #0f172a; /* Slate 900 */
+
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+
+    --muted: #f1f5f9; /* Slate 100 */
+    --muted-foreground: #64748b; /* Slate 500 */
+
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+
+    --border: #e2e8f0; /* Slate 200 */
+    --input: #e2e8f0;
+
+    --ring: #39a900;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: #020617; /* Slate 950 */
+    --foreground: #f8fafc; /* Slate 50 */
+    --primary: #39a900;
+    --primary-foreground: #ffffff;
+    --secondary: #007832;
+    --secondary-foreground: #ffffff;
+    --accent: #00304d;
+    --accent-foreground: #ffffff;
+    --card: #020617;
+    --card-foreground: #f8fafc;
+    --popover: #020617;
+    --popover-foreground: #f8fafc;
+    --muted: #1e293b; /* Slate 800 */
+    --muted-foreground: #94a3b8; /* Slate 400 */
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #39a900;
+  }
+}
+
+@theme inline {
+  /* 🏗️ Mapeo de variables al sistema de Tailwind 4 */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-sans: 'Work Sans', 'Calibri', sans-serif;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  * {
+    /* 🔧 Ajuste para evitar el error de compilación */
+    @apply border-border;
+    outline-color: color-mix(in srgb, var(--ring), transparent 50%);
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}

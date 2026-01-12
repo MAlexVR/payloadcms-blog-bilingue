@@ -1,9 +1,13 @@
 import React from 'react'
-import './styles.css'
+import './globals.css'
+// 1. Importamos el componente Header
+import Header from '@/components/organisms/Header/Header'
+import Footer from '@/components/organisms/Footer/Footer'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'GICS - Investigación, Desarrollo e Innovación',
+  description:
+    'Sitio web bilingüe del Grupo de Investigación GICS. Comprometidos con la excelencia académica, el desarrollo tecnológico y la generación de conocimiento aplicado.',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -11,8 +15,14 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body className="flex flex-col min-h-screen">
+        {/* 2. Colocamos el Header antes del contenido principal */}
+        <Header />
+
+        {/* Usamos flex-grow para que el contenido empuje el futuro footer hacia abajo */}
+        <main className="flex-grow">{children}</main>
+
+        <Footer />
       </body>
     </html>
   )

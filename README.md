@@ -1,67 +1,78 @@
-# Payload Blank Template
+# Blog Bilingüe con PayloadCMS y Diseño Atómico
 
-This template comes configured with the bare minimum to get started on anything you need.
+Un blog bilingüe (Inglés/Español) moderno y de alto rendimiento construido con **Next.js 15**, **PayloadCMS 3.0**, **Tailwind CSS 4** y **Shadcn UI**.
 
-## Quick start
+## 🚀 Stack Tecnológico
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **Framework**: Next.js 15 (App Router)
+- **CMS**: PayloadCMS 3.0 (SQLite)
+- **Estilos**: Tailwind CSS 4 + Shadcn UI
+- **Lenguaje**: TypeScript
+- **Gestor de Paquetes**: pnpm
 
-## Quick Start - local setup
+## 📂 Estructura del Proyecto (Diseño Atómico)
 
-To spin up this template locally, follow these steps:
+El proyecto sigue la metodología de **Diseño Atómico** para garantizar escalabilidad y mantenibilidad.
 
-### Clone
+### Organización de `src/components`
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+- **Atoms** (`/atoms`): Los bloques de construcción más pequeños. Ejemplos: Botones, Inputs, Etiquetas. Son componentes "tontos" sin lógica de aplicación.
+- **Molecules** (`/molecules`): Grupos de átomos que funcionan juntos. Ejemplos: `PostCard`, `LanguageSwitcher`, Barra de Búsqueda. Pueden tener lógica de UI (como abrir/cerrar un menú) pero no lógica de negocio.
+- **Organisms** (`/organisms`): Secciones complejas y distintas de una interfaz. Ejemplos: `Header`, `Footer`, `Hero`. Forman las partes principales de una página y pueden interactuar con el estado global o datos.
+- **Templates** (`/templates`): Diseños a nivel de página que colocan componentes en una cuadrícula. (Usado para estructuras de página repetidas).
+- **Pages** (`src/app`): Las instancias reales donde se obtienen los datos y se pasan a templates u organismos.
 
-### Development
+## 🛠️ Configuración e Instalación
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+### Instalación y Configuración
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+El proyecto utiliza **pnpm** como gestor de paquetes. Asegúrate de tenerlo instalado.
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+1.  **Instalar dependencias**:
 
-#### Docker (Optional)
+    ```bash
+    pnpm install
+    ```
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+2.  **Configurar Variables de Entorno**:
+    Copia el archivo de ejemplo y configura tu base de datos (SQLite por defecto).
 
-To do so, follow these steps:
+    ```bash
+    cp .env.example .env
+    ```
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+3.  **Ejecutar en Desarrollo**:
 
-## How it works
+    ```bash
+    pnpm dev
+    ```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+4.  **Generar Tipos de Payload**:
+    Si modificas las colecciones, regenera los tipos:
+    ```bash
+    pnpm generate:types
+    ```
+5.  **Acceder al Panel Administrativo**:
+    Ve a `http://localhost:3000/admin` para gestionar el contenido.
 
-### Collections
+## 🌍 Localización (i18n)
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+El proyecto soporta **Español (es)** e **Inglés (en)**.
 
-- #### Users (Authentication)
+- **Backend**: PayloadCMS está configurado con localización habilitada en `payload.config.ts`.
+- **Frontend**: Un hook personalizado `useLocale` y `useDictionary` gestionan el estado y el contenido de texto.
+- **Diccionarios**: Todo el texto está centralizado en `src/dictionaries/{locale}.ts` para un fácil mantenimiento.
 
-  Users are auth-enabled collections that have access to the admin panel.
+## 🔍 Manejo de SEO
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+El SEO se gestiona a través de la API de Metadatos de Next.js.
 
-- #### Media
+- **Metadatos Estáticos**: Definidos en `layout.tsx` (título, descripción).
+- **Metadatos Dinámicos**: Usa `generateMetadata` en `page.tsx` para obtener dinámicamente títulos y descripciones del contenido de PayloadCMS (por ejemplo, para posts individuales).
+- **Sitemap**: Payload puede generar sitemaps automáticamente usando plugins.
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+## 🎨 Mejores Prácticas
 
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+- **Tipado Estricto**: Todos los componentes y obtenciones de datos están fuertemente tipados con TypeScript.
+- **Server Components**: Priorizamos Server Components para la obtención de datos para mejorar el rendimiento y el SEO.
+- **Diseño Responsivo**: Enfoque Mobile-first usando Tailwind CSS.
