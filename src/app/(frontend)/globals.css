@@ -18,6 +18,11 @@
     --accent: #00304d; /* Azul Marino Institucional */
     --accent-foreground: #ffffff;
 
+    --navy: #00304d;
+    --yellow: #fdc300;
+    --purple: #71277a;
+    --cyan: #50e5f9;
+
     --background: #ffffff;
     --foreground: #0f172a; /* Slate 900 */
 
@@ -72,6 +77,11 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-yellow: var(--yellow);
+  --color-purple: var(--purple);
+  --color-cyan: var(--cyan);
 
   --font-sans: 'Work Sans', 'Calibri', sans-serif;
   --radius-lg: var(--radius);

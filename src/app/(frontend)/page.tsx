@@ -14,14 +14,7 @@ export default async function Page({
 
   return (
     <>
-      <Hero
-        title="Innovación en Investigación y Desarrollo"
-        description="Grupo de investigación comprometido con la excelencia académica, el desarrollo tecnológico y la generación de conocimiento aplicado a soluciones reales"
-        primaryButtonText="Nuestros Servicios"
-        primaryButtonHref="#servicios"
-        secondaryButtonText="Ver Proyectos"
-        secondaryButtonHref="#proyectos"
-      />
+      <Hero primaryButtonHref="#servicios" secondaryButtonHref="#proyectos" />
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
