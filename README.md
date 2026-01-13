@@ -8,7 +8,7 @@ Un blog bilingüe (Inglés/Español) moderno y de alto rendimiento construido co
 - **CMS**: PayloadCMS 3.0 (SQLite)
 - **Estilos**: Tailwind CSS 4 + Shadcn UI
 - **Lenguaje**: TypeScript
-- **Gestor de Paquetes**: pnpm
+- **Gestor de Paquetes**: npm
 
 ## 📂 Estructura del Proyecto (Diseño Atómico)
 

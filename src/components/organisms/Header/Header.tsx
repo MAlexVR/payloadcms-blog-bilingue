@@ -6,14 +6,13 @@ import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useLocale } from '@/hooks/useLocale'
 import { useDictionary } from '@/hooks/useDictionary'
-// import { dictionary } from './header.dictionary'
-// Intentaremos importar el botón; si falla, usaremos una clase estándar temporalmente
 import { Button } from '@/components/atoms/button'
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null)
 
   const { currentLocale, changeLocale } = useLocale()
   const { dictionary } = useDictionary()
@@ -123,13 +122,47 @@ export default function Header() {
             <nav className="space-y-1">
               {t.navigation.map((item) => (
                 <div key={item.name} className="border-b border-gray-50 last:border-0">
-                  <Link
-                    href={item.href}
-                    className="block py-4 text-base font-medium text-gray-900 active:text-primary"
-                    onClick={() => !item.submenu && setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                  {item.submenu ? (
+                    <>
+                      <button
+                        onClick={() =>
+                          setActiveMobileSubmenu(
+                            activeMobileSubmenu === item.name ? null : item.name,
+                          )
+                        }
+                        className="flex w-full items-center justify-between py-4 text-base font-medium text-gray-900"
+                      >
+                        {item.name}
+                        <ChevronDown
+                          className={`h-5 w-5 transition-transform ${
+                            activeMobileSubmenu === item.name ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                      {activeMobileSubmenu === item.name && (
+                        <div className="bg-gray-50 rounded-md mb-2 overflow-hidden">
+                          {item.submenu.map((subitem) => (
+                            <Link
+                              key={subitem.name}
+                              href={subitem.href}
+                              className="block py-3 px-6 text-sm text-gray-700 hover:text-primary active:bg-gray-100"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {subitem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="block py-4 text-base font-medium text-gray-900 active:text-primary"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                 </div>
               ))}
             </nav>
